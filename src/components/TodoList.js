@@ -2,11 +2,18 @@ import React from 'react';
 import TodoElement from './TodoElement';
 
 
-const TodoList = ({ inputText, todoList }) => {
+const TodoList = ({ todoList, setTodoList }) => {
 
   const todos = todoList.map((item) => {
     return (
-      <TodoElement key={item.id} text={item.text} />
+      <TodoElement
+        id={item.id}
+        key={item.id}
+        text={item.text}
+        todoList={todoList}
+        setTodoList={setTodoList}
+        todo={item}
+      />
     )
   })
 
@@ -14,6 +21,7 @@ const TodoList = ({ inputText, todoList }) => {
     <div className="mt-5">
       {todos}
     </div>
+
   )
 }
 

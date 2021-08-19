@@ -13,7 +13,6 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList }) => {
         completed: false,
         id: Math.random() * 1000}])
       setInputText("");
-      console.log(todoList);
     }
   }
 
