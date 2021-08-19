@@ -10,7 +10,7 @@ function App() {
   const [todoList, setTodoList] = useState([]);
 
   return (
-    <div className="App">
+    <div className="wrapper">
       <FormInput
         inputText={inputText}
         setInputText={setInputText}

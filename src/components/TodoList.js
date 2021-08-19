@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
+import TodoElement from './TodoElement';
+
 
 const TodoList = ({ inputText, todoList }) => {
 
-  const todos = todoList.map((item, index) => {
+  const todos = todoList.map((item) => {
     return (
-      <p key={index}>{item}</p>
+      <TodoElement key={item.id} text={item.text} />
     )
   })
 
   return (
-    <div>
+    <div className="mt-5">
       {todos}
     </div>
   )

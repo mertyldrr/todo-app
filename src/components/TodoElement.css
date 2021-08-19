@@ -1,0 +1,21 @@
+.todoelement-wrapper {
+  color: white;
+  font-size: 24px;
+}
+
+.tick {
+  width: 40px;
+  height: 40px;
+}
+
+.cross {
+  width: 25px;
+  height: 25px;
+  color: black;
+}
+
+.button {
+  padding: 0;
+  border: none;
+  background: none;
+}
