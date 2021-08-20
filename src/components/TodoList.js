@@ -2,9 +2,9 @@ import React from 'react';
 import TodoElement from './TodoElement';
 
 
-const TodoList = ({ todoList, setTodoList }) => {
+const TodoList = ({ todoList, setTodoList, filtered }) => {
 
-  const todos = todoList.map((item) => {
+  const todos = filtered.map((item) => {
     return (
       <TodoElement
         id={item.id}

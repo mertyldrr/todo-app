@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Container, FormControl, Row } from 'react-bootstrap';
 import './FormInput.css';
 
-const FormInput = ({ inputText, setInputText, todoList, setTodoList }) => {
+const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }) => {
 
   const handleKeyPress = (e) => {
     if (e.charCode === 13) {
@@ -14,6 +14,10 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList }) => {
         id: Math.random() * 1000}])
       setInputText("");
     }
+  }
+
+  const optionHandler = (e) => {
+    setOption(e.target.value)
   }
 
   return (
@@ -32,10 +36,10 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList }) => {
           placeholder="type here" />
         </Col>
         <Col xs lg="2">
-          <FormControl as="select">
-            <option value="Filter1">All</option>
-            <option value="Filter2">Completed</option>
-            <option value="Filter3">Uncompleted</option>
+          <FormControl onChange={optionHandler} as="select">
+            <option value="All">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Uncompleted">Uncompleted</option>
           </FormControl>
         </Col>
       </Row>
