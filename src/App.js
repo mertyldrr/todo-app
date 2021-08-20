@@ -12,7 +12,12 @@ function App() {
   const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
+    getLocalTodoList();
+  }, [])
+
+  useEffect(() => {
     filterHandler();
+    saveToLocal();
   }, [todoList, option])
 
   const filterHandler = () => {
@@ -28,6 +33,21 @@ function App() {
         setFiltered(todoList);
     }
   };
+
+  const saveToLocal = () => {
+    localStorage.setItem("todoList", JSON.stringify(todoList))
+  };
+
+  const getLocalTodoList = () => {
+    if (localStorage.getItem("todoList") === null) {
+      localStorage.setItem("todoList", JSON.stringify([]));
+    }
+
+    else {
+      let localTodoList = JSON.parse(localStorage.getItem("todoList"));
+      setTodoList(localTodoList);
+    }
+  }
 
   return (
     <div className="wrapper">
