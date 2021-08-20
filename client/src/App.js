@@ -5,7 +5,7 @@ import './App.css';
 
 
 function App() {
-  
+
   const [inputText, setInputText] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [option, setOption] = useState("All");
