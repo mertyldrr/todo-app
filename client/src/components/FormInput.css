@@ -6,3 +6,13 @@
 .header {
   font-size: 55px;
 }
+
+.form-control.invalid {
+  border-color: blue;
+  background-color: rgb(102, 211, 245);
+}
+
+.form-control.invalid:focus {
+  border-color: blue;
+  background-color: rgb(102, 211, 245);
+}

@@ -60,7 +60,6 @@ function App() {
       />
 
       <TodoList
-        inputText={inputText}
         todoList={todoList}
         setTodoList={setTodoList}
         filtered={filtered}

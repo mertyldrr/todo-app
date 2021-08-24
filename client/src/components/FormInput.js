@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Container, FormControl, Row } from 'react-bootstrap';
 import './FormInput.css';
 
 const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }) => {
 
+  const [isValid, setIsValid] = useState(true);
+
   const handleKeyPress = (e) => {
     if (e.charCode === 13) {
+      if (e.target.value.trim().length === 0) {
+        setIsValid(false);
+        return;
+      }
       setInputText(e.target.value);
       setTodoList([
         ...todoList, 
@@ -14,6 +20,14 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }
         id: Math.random() * 1000}])
       setInputText("");
     }
+  }
+
+  const onChangeHandler = (e) => {
+    if (e.target.value.trim().length > 0)
+      setIsValid(true);
+    else
+      setIsValid(false);
+    setInputText(e.target.value);
   }
 
   const optionHandler = (e) => {
@@ -31,9 +45,10 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }
           <FormControl
           value={inputText}
           type="text"
-          onChange={e => setInputText(e.target.value)} 
+          className={`form-control ${!isValid ? "invalid" : ""}`}
+          onChange={onChangeHandler} 
           onKeyPress={handleKeyPress}   
-          placeholder="type here" />
+          placeholder={`${!isValid ? "can not be empty" : "press enter to add"}`} />
         </Col>
         <Col xs lg="2">
           <FormControl onChange={optionHandler} as="select">
