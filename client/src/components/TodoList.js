@@ -7,9 +7,7 @@ const TodoList = ({ todoList, setTodoList, filtered }) => {
   const todos = filtered.map((item) => {
     return (
       <TodoElement
-        id={item.id}
-        key={item.id}
-        text={item.text}
+        key={item._id}
         todoList={todoList}
         setTodoList={setTodoList}
         todo={item}

@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const TodoSchema = mongoose.Schema({
   text: {
     type: String,
-    trim: true
+    trim: true,
+    required: [true, 'Please add some text']
   },
-  completed: Boolean,
+  completed: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now

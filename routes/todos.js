@@ -10,6 +10,7 @@ router
 
 router
   .route('/:id')
+  .put(todoController.completeTodo)
   .delete(todoController.deleteTodo);
 
 module.exports = router;

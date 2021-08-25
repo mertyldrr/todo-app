@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Container, FormControl, Row } from 'react-bootstrap';
+import { addTodo } from '../api/todos';
 import './FormInput.css';
 
 const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }) => {
@@ -12,12 +13,11 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }
         setIsValid(false);
         return;
       }
-      setInputText(e.target.value);
-      setTodoList([
-        ...todoList, 
-        {text: e.target.value,
-        completed: false,
-        id: Math.random() * 1000}])
+      let todo = { text: e.target.value }
+      addTodo(todo).then(res => {
+        console.log(res);
+        setTodoList([...todoList, res])
+      });
       setInputText("");
     }
   }
@@ -40,15 +40,15 @@ const FormInput = ({ inputText, setInputText, todoList, setTodoList, setOption }
         <h1 className="header">Todo App</h1>
       </Row>
       <Row className="h-50 justify-content-center align-items-center">
-        
+
         <Col xs lg="4">
           <FormControl
-          value={inputText}
-          type="text"
-          className={`form-control ${!isValid ? "invalid" : ""}`}
-          onChange={onChangeHandler} 
-          onKeyPress={handleKeyPress}   
-          placeholder={`${!isValid ? "can not be empty" : "press enter to add"}`} />
+            value={inputText}
+            type="text"
+            className={`form-control ${!isValid ? "invalid" : ""}`}
+            onChange={onChangeHandler}
+            onKeyPress={handleKeyPress}
+            placeholder={`${!isValid ? "can not be empty" : "press enter to add"}`} />
         </Col>
         <Col xs lg="2">
           <FormControl onChange={optionHandler} as="select">

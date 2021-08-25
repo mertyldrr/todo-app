@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
+const cors = require('cors')
 
 dotenv.config({ path: './config/config.env' });
 
@@ -11,7 +12,9 @@ const todos = require('./routes/todos');
 
 const app = express();
 
-app.use('/api/todos/', todos)
+app.use(express.json());
+app.use(cors());
+app.use('/api/todos', todos);
 
 const PORT = process.env.PORT || 5000;
 

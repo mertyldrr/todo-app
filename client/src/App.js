@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FormInput from './components/FormInput';
 import TodoList from './components/TodoList';
+import { getTodos } from './api/todos';
 import './App.css';
 
 
@@ -10,18 +11,19 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [option, setOption] = useState("All");
   const [filtered, setFiltered] = useState([]);
-
   useEffect(() => {
-    getLocalTodoList();
+    getTodos().then(res => {
+      console.log(res);
+      setTodoList(res);
+    })
   }, [])
 
   useEffect(() => {
     filterHandler();
-    saveToLocal();
+    //saveToLocal();
   }, [todoList, option])
 
   const filterHandler = () => {
-    console.log(option);
     switch (option) {
       case "Completed":
         setFiltered(todoList.filter(todo => todo.completed === true));
@@ -34,20 +36,20 @@ function App() {
     }
   };
 
-  const saveToLocal = () => {
-    localStorage.setItem("todoList", JSON.stringify(todoList))
-  };
+  // const saveToLocal = () => {
+  //   localStorage.setItem("todoList", JSON.stringify(todoList))
+  // };
 
-  const getLocalTodoList = () => {
-    if (localStorage.getItem("todoList") === null) {
-      localStorage.setItem("todoList", JSON.stringify([]));
-    }
+  // const getLocalTodoList = () => {
+  //   if (localStorage.getItem("todoList") === null) {
+  //     localStorage.setItem("todoList", JSON.stringify([]));
+  //   }
 
-    else {
-      let localTodoList = JSON.parse(localStorage.getItem("todoList"));
-      setTodoList(localTodoList);
-    }
-  }
+  //   else {
+  //     let localTodoList = JSON.parse(localStorage.getItem("todoList"));
+  //     setTodoList(localTodoList);
+  //   }
+  // }
 
   return (
     <div className="wrapper">
